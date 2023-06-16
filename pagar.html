@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Virtualteca - Pagar</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <link rel="stylesheet" href="./css/index.css">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Icons" rel="stylesheet">
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://www.google.com/recaptcha/api.js?render=6LeZIrIcAAAAAEnomK2eUHQoq630K2aaH6AfQNdT"></script>
+       
+    
+</head>
+<style type="text/css">.button {
+  display: inline-block;
+  border-radius: 4px;
+  background-color: #f4511e;
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 28px;
+  padding: 20px;
+  width: 200px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 5px;
+}
+
+.button span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.button span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.button:hover span {
+  padding-right: 25px;
+}
+
+.button:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+
+ 
+</style>
+<body>
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+    <div class="container">
+        <a class="navbar-brand" href="#">Virtualteca</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav me-auto mb-2 mb-md-0">
+                <li class="nav-item">
+                    <a class="nav-link" href="./">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./catalogo.html">Catalogo</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="./pagar.html">Pagar</a>
+                </li>
+            </ul>
+            <form class="d-flex">
+                <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Buscar">
+                <button class="btn btn-outline-success" type="submit">Buscar</button>
+            </form>
+        </div>
+    </div>
+</nav>
+
+
+
+
+<main class="container">
+    <div class="py-5 text-center">
+        <h2>Formulario de pago</h2>
+
+    </div>
+
+    <div class="row g-5">
+        <div class="col-md-5 col-lg-4 order-md-last">
+            <h4 class="d-flex justify-content-between align-items-center mb-3">
+                <span class="text-primary">Tu compra</span>
+                <span class="badge bg-primary rounded-pill">3</span>
+            </h4>
+            <ul class="list-group mb-3">
+                <li class="list-group-item d-flex justify-content-between lh-sm">
+                    <div>
+                        <h6 class="my-0">Product name</h6>
+                        <small class="text-muted">Brief description</small>
+                    </div>
+                    <span class="text-muted">$12</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between lh-sm">
+                    <div>
+                        <h6 class="my-0">Second product</h6>
+                        <small class="text-muted">Brief description</small>
+                    </div>
+                    <span class="text-muted">$8</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between lh-sm">
+                    <div>
+                        <h6 class="my-0">Third item</h6>
+                        <small class="text-muted">Brief description</small>
+                    </div>
+                    <span class="text-muted">$5</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between bg-light">
+                    <div class="text-success">
+                        <h6 class="my-0">Promo code</h6>
+                        <small>EXAMPLECODE</small>
+                    </div>
+                    <span class="text-success">−$5</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between">
+                    <span>Total (USD)</span>
+                    <strong>$20</strong>
+                </li>
+            </ul>
+
+            <form class="card p-2">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Promo code">
+                    <button type="submit" class="btn btn-secondary">Redeem</button>
+                </div>
+            </form>
+        </div>
+        <div class="col-md-7 col-lg-8">
+            <h4 class="mb-3">Informacion de entrega</h4>
+            <form  name="form" class="needs-validation" id="formuentrega" method="POST" action="#">
+                <div class="row g-3">
+                    <div class="col-sm-6">
+                        <label for="firstName">Primer nombre</label>
+                        <input type="text"  class="form-control" id="firstName" name="nombre" required="">
+                        <p id="demo"></p>
+                    </div>
+
+                    <div class="col-sm-6">
+                        <label for="lastName" class="form-label">Apellido</label>
+                        <input type="text" class="form-control" id="lastName" name="apellido" placeholder="" value="" required>
+                    </div>
+
+                    <div class="col-12">
+                        <label for="username" class="form-label">Usuario</label>
+                        <div class="input-group has-validation">
+                            <span class="input-group-text">@</span>
+                            <input type="text" class="form-control" id="username" name="username" placeholder="Username" required>
+                        </div>
+                    </div>
+
+                    <div class="col-12">
+                        <label for="email" class="form-label">Email <span id="emailOK" class="text-muted">(Opcional)</span></label>
+                        <input type="email" class="form-control" id="email" placeholder="you@example.com">
+                    </div>
+
+                    <div class="col-12">
+                        <label for="address" class="form-label">Direccion</label>
+                        <input type="text" class="form-control" name="direccion" id="address" placeholder="Calle 45 #34b-14" required>
+                    </div>
+
+                    <div class="col-12">
+                        <label for="address2" class="form-label">Direccion 2 <span class="text-muted">(Opcional)</span></label>
+                        <input type="text" class="form-control" id="address2" placeholder="Apartment or suite">
+                    </div>
+
+                    <div class="col-md-5">
+                        <label for="country"  class="form-label">Pais</label>
+                        <input type="text" disabled name="Colombia" class="form-control" id="pais" placeholder="Colombia">
+                    </div>
+
+                    <div class="col-md-4">
+                        <label for="state" class="form-label">Departamento</label>
+                        <select class="form-select" id="state" required>
+                            <option value="">Elegir</option>
+                            <option>Amazonas</option>
+                            <option>Antioquía</option>
+                            <option>Arauca</option> 
+                            <option>Atlántico</option> 
+                            <option>Bolívar</option> 
+                            <option>Boyacá</option>
+                            <option>Caldas</option>
+                            <option>Caldas</option>
+                            <option>Chocó</option>
+                            <option>Huila </option>
+                            <option>La Guajira</option>
+                            <option>Santander:</option>
+                            <option>Tolima</option>
+                            <option>Valle del Cauca</option>
+                            <option>Vaupés</option>
+
+                        </select>
+                    </div>
+
+                    <div class="col-md-3">
+                        <label for="zip" class="form-label">Codigo postal</label>
+                        <input onkeypress='return event.charCode >= 48 && event.charCode <= 57'type="text" class="form-control" id="zip">
+                        <div class="invalid-feedback">
+                            Zip code required.
+                        </div>
+                    </div>
+                </div>
+
+                <hr class="my-4">
+
+                <div class="form-check">
+                    <input type="checkbox" class="form-check-input" id="same-address">
+                    <label class="form-check-label" for="same-address">La dirección de envío es la misma que mi dirección de facturación</label>
+                </div>
+
+                <div class="form-check">
+                    <input type="checkbox" class="form-check-input" id="save-info">
+                    <label class="form-check-label" for="save-info">Guardar informacion para una proxima compra</label>
+                </div>
+
+                <hr class="my-4">
+
+                <h4 class="mb-3">Pago</h4>
+
+                <div class="my-3">
+                    <div class="form-check">
+                        <input id="credit" name="paymentMethod" type="radio" class="form-check-input" checked required>
+                        <label class="form-check-label" for="credit">Tarjeta de credito</label>
+                    </div>
+                    <div class="form-check">
+                        <input id="debit" name="paymentMethod" type="radio" class="form-check-input" required>
+                        <label class="form-check-label" for="debit">Tarjeta de debito</label>
+                    </div>
+                    <div class="form-check">
+                        <input id="paypal" name="paymentMethod" type="radio" class="form-check-input" required>
+                        <label class="form-check-label" for="paypal">PayPal</label>
+                    </div>
+                </div>
+
+                <div class="row gy-3" id="status">
+                    <div class="col-md-6">
+                        <label for="cc-name" class="form-label">Nombre de la tarjeta</label>
+                        <input type="text" class="form-control" id="ccname" placeholder="" required>
+                        <small class="text-muted">Nombre completo como se muestra en la tarjeta</small>
+                        <div class="invalid-feedback">
+                            Name on card is required
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="cc-number" class="form-label">Numero de la tarjeta de credito</label>
+                        <input  onkeypress='return event.charCode >= 48 && event.charCode <= 57'type="text" class="form-control" id="ccnumber" placeholder="" required>
+                        <div class="invalid-feedback">
+                            Credit card number is required
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <label for="cc-expiration" class="form-label">Caducidad</label>
+                        <input type="text" class="form-control" id="ccexpiration" placeholder="" required>
+                        <div class="invalid-feedback">
+                            Expiration date required
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <label for="cc-cvv" class="form-label">CVV</label>
+                        <input type="text" class="form-control" id="cccvv" placeholder="" required="">
+                        <div class="invalid-feedback">
+                            Security code required
+                        </div>
+                    </div>
+                </div>
+                 
+                 <br/>  
+                  
+                    <button  id="entrar"onclick="validar(); "class="button" style="vertical-align:middle"><span>Enviar </span></button>
+
+               
+                <!-- validacion de campos ingresados por el ususario -->
+                 <script type="text/javascript">
+                     function validar(){
+                        document.getElementById('email').addEventListener('input', function() {
+                        campo = event.target;
+                        valido = document.getElementById('emailOK');
+        
+                        emailRegex = /^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i;
+                        //Se muestra un texto a modo de ejemplo, luego va a ser un icono
+                         if (emailRegex.test(campo.value)) {
+                        valido.innerText = "válido";
+                        } else {
+                         valido.innerText = "incorrecto";
+                        }
+                        });
+                        
+
+                        }
+                            if(form.apellido.value==0){
+                            alert('last name es obligatorio');
+                            form.apellido.value ="";
+                            form.apellido.focus();
+                            return false ;
+                        }
+                            if(form.username.value==0){
+                            alert('username es obligatorio');
+                            form.username.value ="";
+                            form.username.focus();
+                            return false ;
+                         }
+                         
+                            if(form.direccion.value==0){
+                            alert('direccion es obligatorio');
+                            form.direccion.value ="";
+                            form.direccion.focus();
+                            return false ;
+                         }
+                        
+                            if(form.country.value==0){
+                            alert('country es obligatorio');
+                            form.direccion.value ="";
+                            form.direccion.focus();
+                            return false ;
+                         }
+                          if(form.state.value==0){
+                            alert('state es obligatorio');
+                            form.direccion.value ="";
+                            form.direccion.focus();
+                            return false ;
+                        }    
+                          if(form.zip.value==0){
+                            alert('Zip es obligatorio');
+                            form.direccion.value ="";
+                            form.direccion.focus();
+                            return false ;
+                         }
+                          if(form.ccname.value==0){
+                            alert('name on card es obligatorio');
+                            form.direccion.value ="";
+                            form.direccion.focus();
+                            return false ;
+                         }
+                         if(event.charCode >= 48 && event.charCode <= 57){
+                         return true;
+                         }
+                         return false;        
+
+                          if(form.ccnumber.value==0){
+                            alert(' credit card numbre obligatorio');
+                            form.direccion.value ="";
+                            form.direccion.focus();
+                            return false ;
+                         }
+                           if(form.ccexpiration.value==0){
+                            alert('expiration es obligatorio');
+                            form.direccion.value ="";
+                            form.direccion.focus();
+                            return false ;
+
+                        }
+                           if(form.cccvv.value==0){
+                            alert('CVV es obligatorio');
+                            form.direccion.value ="";
+                            form.direccion.focus();
+                            return false ;
+
+                        }
+                        
+                }
+
+                 </script>
+
+
+                <hr class="my-4">
+
+                
+            </form>
+        </div>
+    </div>
+</main>
+
+</body>
+</html>
